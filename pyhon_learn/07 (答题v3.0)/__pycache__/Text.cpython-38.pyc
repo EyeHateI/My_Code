@@ -1,0 +1,24 @@
+value='')
+    Text5.set('')
+    info5 = tk.Label(window2,textvariable=Text5)
+    info5.place(x=310,y=120)
+
+    def register():
+        f1 = open('F:\\360downloads\\python\\WorkPlace\\09 new\\info.yaml','r+',encoding='utf-8')
+        a1 = yaml.safe_load(f1)
+        dict0 = {}
+        if len(userName.get()) == 0:
+            Text3.set('x 账号不能为空')
+            info3['fg'] = 'red'
+        elif len(userName.get()) != 0:
+            if str(userName.get()) in a1:
+                Text3.set('x 账号已存在')
+                info3['fg'] = 'red'
+                f1.close
+            else:
+                if str(userName.get()).isalnum():
+                    global least,length
+                    if len(userName.get()) < least:
+                        Text3.set('x 账号长度过短')
+                        info3['fg'] = 'red'
+     

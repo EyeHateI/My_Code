@@ -1,0 +1,66 @@
+import hashlib
+
+import tkinter as tk
+import tkinter.messagebox
+
+import yaml
+
+
+
+def Lock(string):
+    password = hashlib.sha256()
+    password.update(string.encode())
+    passworded = password.digest()
+    return passworded
+
+window = tk.Tk()
+window.title('登录')
+window.geometry('480x300')
+least = 5
+length = 12
+
+tk.Label(window,text='登录',font=('Arial',20)).place(x=200,y=0)
+
+tk.Label(window,text='用户名:',font=('Arial',14)).place(x=50,y=60)
+account = tk.StringVar()
+account.set(f'请输入{least}-{length}位字符')
+e1 = tk.Entry(window,textvariable=account,font=('Arial',14))
+e1.place(x=140,y=60)
+
+tk.Label(window,text='密码：',font=('Arial',14)).place(x=50,y=100)
+password = tk.StringVar()
+password.set('')
+e2 = tk.Entry(window,textvariable=password,font=('Arial',14),show='*')
+e2.place(x=140,y=100)
+
+Text = tk.StringVar(window,value='')
+Text.set('')
+info1 = tk.Label(window,textvariable=Text)
+info1.place(x=380,y=60)
+
+Text2 = tk.StringVar(window,value='')
+Text2.set('')
+info2 = tk.Label(window,textvariable=Text2)
+info2.place(x=380,y=100)
+
+tk.Label(window,text='Designed by EyeHateI').place(x=40,y=260)
+
+def login():
+    f = open('F:\\360downloads\\python\\WorkPlace\\09 new\\info.yaml','r+',encoding='utf-8')
+    a = yaml.safe_load(f)
+
+    if len(account.get()) == 0:
+        Text.set('x 账号不能为空')
+        info1['fg'] = 'Red'
+    elif len(account.get()) < least:
+        Text.set('x 账号长度过短')
+        info1['fg'] = 'Red'
+    elif len(account.get()) > length:
+        Text.set('x 账号长度过长')
+        info1['fg'] = 'Red'
+    else:
+        Text.set('√')
+        info1['fg'] = 'Lime'
+        if account.get() in a:
+            if len(password.get()) == 0:
+     
