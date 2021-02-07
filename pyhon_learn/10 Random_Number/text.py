@@ -1,10 +1,11 @@
-import yaml
-import os
-curpath = os.path.dirname(os.path.realpath(__file__))   #获取当前路径
-yamlpath = os.path.join(curpath, "info.yaml")          
-n = open(yamlpath,'r+',encoding='utf-8')                #创建名为info.yaml的配置文件
-y = yaml.safe_load(n)
-print(len(y))
-y.pop(0)
-print(list(y))
-print(y.count(3))
+str = '1.23'
+print(str.isdigit())
+a = 0
+b = 1
+c = 1
+if a == 0 and b == 1 and c == 1:
+    print('yes')
+else:
+    print('no')
+
+print('' < '3')
